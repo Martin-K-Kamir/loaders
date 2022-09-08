@@ -1,0 +1,31 @@
+
+.spinner-1 {
+	width    : 5rem;
+	height   : 5rem;
+	position : relative;
+
+	div {
+		position         : absolute;
+		inset            : 0;
+		border           : 3px solid transparent;
+		border-top-color : crimson;
+		border-radius    : 50%;
+		animation        : spinner 600ms linear infinite;
+	}
+
+	div:nth-child(1) {
+		border-bottom-color : crimson;
+	}
+}
+
+@keyframes spinner {
+	0% {
+		transform : rotate(0deg);
+	}
+	50% {
+		transform : rotate(180deg);
+	}
+	100% {
+		transform : rotate(360deg);
+	}
+}

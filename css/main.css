@@ -1,0 +1,282 @@
+/**
+ * @author - https://piccalil.li/blog/a-modern-css-reset/
+ */
+/* Box sizing rules */
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+  color: inherit;
+  text-align: left;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *,
+*::before,
+*::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: system-ui;
+}
+
+.container {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  background-color: var(--clr-background, #222222);
+  display: grid;
+  place-items: center;
+  grid-template-areas: "stack";
+}
+
+.order {
+  position: absolute;
+  user-select: none;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 90rem;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.03);
+}
+
+.bouncer {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 100px;
+  height: 100px;
+}
+.bouncer__ball {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: crimson;
+  animation: bounce 500ms infinite cubic-bezier(0.19, 0.57, 0.3, 0.98) alternate;
+}
+.bouncer__ball:nth-child(2) {
+  animation-delay: 100ms;
+  opacity: 80%;
+}
+.bouncer__ball:nth-child(3) {
+  animation-delay: 200ms;
+  opacity: 60%;
+}
+.bouncer__ball:nth-child(4) {
+  animation-delay: 300ms;
+  opacity: 40%;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100px);
+  }
+}
+.spinner-1 {
+  width: 5rem;
+  height: 5rem;
+  position: relative;
+}
+.spinner-1 div {
+  position: absolute;
+  inset: 0;
+  border: 3px solid transparent;
+  border-top-color: crimson;
+  border-radius: 50%;
+  animation: spinner 600ms linear infinite;
+}
+.spinner-1 div:nth-child(1) {
+  border-bottom-color: crimson;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.circles {
+  height: 40px;
+  transform-origin: bottom center;
+  animation: rotate-circles 3s linear infinite;
+}
+.circles__circle {
+  display: inline-block;
+  background-color: crimson;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: grow-circles 1.75s linear infinite;
+  margin: -10px;
+}
+.circles__circle:nth-child(2) {
+  background-color: steelblue;
+  animation-delay: 0.75s;
+}
+
+@keyframes rotate-circles {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes grow-circles {
+  50% {
+    transform: scale(0.8);
+  }
+}
+.domino {
+  display: flex;
+  gap: 2.3rem;
+}
+.domino__box, .domino__box::before {
+  display: block;
+  width: 2rem;
+  aspect-ratio: 1;
+  background-color: var(--clr-background);
+  border-radius: 0.5rem;
+}
+.domino__box {
+  --clr-background: #5465ff;
+  transform: rotate(-45deg);
+  animation: move-domino 650ms ease-out forwards;
+}
+.domino__box:nth-child(2) {
+  --clr-background: #788bff;
+  animation-delay: 650ms;
+}
+.domino__box:nth-child(3) {
+  --clr-background: #9bb1ff;
+  animation-delay: 1300ms;
+}
+.domino__box:nth-child(4) {
+  --clr-background: #bfd7ff;
+  animation-delay: 1950ms;
+}
+.domino__box:nth-child(5) {
+  --clr-background: #e2fdff;
+  animation-delay: 2600ms;
+}
+.domino__box::before {
+  content: "";
+  transform: translateY(-150%);
+  animation: hide-domino 0s ease-out 650ms forwards;
+}
+.domino__box:nth-child(2)::before {
+  opacity: 0;
+  animation: show-domino 0s 650ms forwards, hide-domino 0s ease-out 1300ms forwards;
+}
+.domino__box:nth-child(3)::before {
+  opacity: 0;
+  animation: show-domino 0s 1300ms forwards, hide-domino 0s ease-out 1950ms forwards;
+}
+.domino__box:nth-child(4)::before {
+  opacity: 0;
+  animation: show-domino 0s 1950ms forwards, hide-domino 0s ease-out 2600ms forwards;
+}
+.domino__box:nth-child(5)::before {
+  opacity: 0;
+  animation: show-domino 0s 2600ms forwards, hide-domino 0s ease-out 3250ms;
+}
+
+@keyframes move-domino {
+  to {
+    transform: rotate(45deg);
+  }
+}
+@keyframes hide-domino {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes show-domino {
+  to {
+    opacity: 1;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

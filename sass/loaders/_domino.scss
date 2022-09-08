@@ -1,0 +1,85 @@
+
+.domino {
+
+	display : flex;
+	gap     : 2.3rem;
+
+	&__box,
+	&__box::before {
+		display          : block;
+		width            : 2rem;
+		aspect-ratio     : 1;
+		background-color : var(--clr-background);
+		border-radius    : 0.5rem;
+	}
+
+	&__box {
+		--clr-background : #5465ff;
+		transform        : rotate(-45deg);
+		animation        : move-domino 650ms ease-out forwards;
+	}
+
+	&__box:nth-child(2) {
+		--clr-background : #788bff;
+		animation-delay  : 650ms;
+	}
+
+	&__box:nth-child(3) {
+		--clr-background : #9bb1ff;
+		animation-delay  : 1300ms;
+	}
+
+	&__box:nth-child(4) {
+		--clr-background : #bfd7ff;
+		animation-delay  : 1950ms;
+	}
+
+	&__box:nth-child(5) {
+		--clr-background : #e2fdff;
+		animation-delay  : 2600ms;
+	}
+
+	&__box::before {
+		content   : "";
+		transform : translateY(-150%);
+		animation : hide-domino 0s ease-out 650ms forwards;
+	}
+
+	&__box:nth-child(2)::before {
+		opacity   : 0;
+		animation : show-domino 0s 650ms forwards, hide-domino 0s ease-out 1300ms forwards;
+	}
+
+	&__box:nth-child(3)::before {
+		opacity   : 0;
+		animation : show-domino 0s 1300ms forwards, hide-domino 0s ease-out 1950ms forwards;
+	}
+
+	&__box:nth-child(4)::before {
+		opacity   : 0;
+		animation : show-domino 0s 1950ms forwards, hide-domino 0s ease-out 2600ms forwards;
+	}
+
+	&__box:nth-child(5)::before {
+		opacity   : 0;
+		animation : show-domino 0s 2600ms forwards, hide-domino 0s ease-out 3250ms ;
+	}
+}
+
+@keyframes move-domino {
+	to {
+		transform : rotate(45deg);
+	}
+}
+
+@keyframes hide-domino {
+	to {
+		opacity : 0;
+	}
+}
+
+@keyframes show-domino {
+	to {
+		opacity : 1;
+	}
+}
