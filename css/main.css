@@ -142,7 +142,6 @@ body {
   animation-delay: 300ms;
   opacity: 40%;
 }
-
 @keyframes bounce {
   from {
     transform: translateY(0);
@@ -151,6 +150,7 @@ body {
     transform: translateY(-100px);
   }
 }
+
 .spinner-1 {
   width: 5rem;
   height: 5rem;
@@ -167,7 +167,6 @@ body {
 .spinner-1 div:nth-child(1) {
   border-bottom-color: crimson;
 }
-
 @keyframes spinner {
   0% {
     transform: rotate(0deg);
@@ -179,6 +178,7 @@ body {
     transform: rotate(360deg);
   }
 }
+
 .circles {
   height: 40px;
   transform-origin: bottom center;
@@ -198,7 +198,6 @@ body {
   background-color: steelblue;
   animation-delay: 0.75s;
 }
-
 @keyframes rotate-circles {
   to {
     transform: rotate(360deg);
@@ -209,71 +208,137 @@ body {
     transform: scale(0.8);
   }
 }
+
 .domino {
+  --hue: 234;
+  --sataturation: 100%;
+  --lightness: 66%;
+  --size-box: 2rem;
   display: flex;
   gap: 2.3rem;
 }
 .domino__box, .domino__box::before {
   display: block;
-  width: 2rem;
+  width: var(--size-box);
   aspect-ratio: 1;
   background-color: var(--clr-background);
   border-radius: 0.5rem;
 }
 .domino__box {
-  --clr-background: #5465ff;
-  transform: rotate(-45deg);
-  animation: move-domino 650ms ease-out forwards;
-}
-.domino__box:nth-child(2) {
-  --clr-background: #788bff;
-  animation-delay: 650ms;
-}
-.domino__box:nth-child(3) {
-  --clr-background: #9bb1ff;
-  animation-delay: 1300ms;
-}
-.domino__box:nth-child(4) {
-  --clr-background: #bfd7ff;
-  animation-delay: 1950ms;
-}
-.domino__box:nth-child(5) {
-  --clr-background: #e2fdff;
-  animation-delay: 2600ms;
+  --clr-background: hsl(var(--hue), var(--sataturation), var(--lightness));
+  animation: rotate-box 650ms ease-out both;
 }
 .domino__box::before {
   content: "";
   transform: translateY(-150%);
-  animation: hide-domino 0s ease-out 650ms forwards;
+  opacity: 0;
+  animation: show-hide-box 650ms ease-out forwards;
+}
+.domino__box:nth-child(2) {
+  --clr-background: hsl(var(--hue), var(--sataturation), 73%);
+  animation-delay: 650ms;
 }
 .domino__box:nth-child(2)::before {
-  opacity: 0;
-  animation: show-domino 0s 650ms forwards, hide-domino 0s ease-out 1300ms forwards;
+  animation-delay: 650ms;
+}
+.domino__box:nth-child(3) {
+  --clr-background: hsl(var(--hue), var(--sataturation), 80%);
+  animation-delay: 1300ms;
 }
 .domino__box:nth-child(3)::before {
-  opacity: 0;
-  animation: show-domino 0s 1300ms forwards, hide-domino 0s ease-out 1950ms forwards;
+  animation-delay: 1300ms;
+}
+.domino__box:nth-child(4) {
+  --clr-background: hsl(var(--hue), var(--sataturation), 87%);
+  animation-delay: 1950ms;
 }
 .domino__box:nth-child(4)::before {
-  opacity: 0;
-  animation: show-domino 0s 1950ms forwards, hide-domino 0s ease-out 2600ms forwards;
+  animation-delay: 1950ms;
+}
+.domino__box:nth-child(5) {
+  --clr-background: hsl(var(--hue), var(--sataturation), 94%);
+  animation-delay: 2600ms;
 }
 .domino__box:nth-child(5)::before {
-  opacity: 0;
-  animation: show-domino 0s 2600ms forwards, hide-domino 0s ease-out 3250ms;
+  animation: show-hide-box 650ms ease-out forwards, show-box 0ms ease-out forwards;
+  animation-delay: 2600ms;
 }
-
-@keyframes move-domino {
+.domino__box:nth-child(6) {
+  --clr-background: hsl(var(--hue), var(--sataturation), 101%);
+  animation-delay: 3250ms;
+}
+.domino__box:nth-child(6)::before {
+  animation-delay: 3250ms;
+}
+.domino--reverse .domino__box {
+  animation: rotate-box-reverse 650ms ease-out both;
+}
+.domino--reverse .domino__box:nth-child(5) {
+  animation-delay: 0ms;
+  animation-delay: 0ms;
+}
+.domino--reverse .domino__box:nth-child(5)::before {
+  animation: show-hide-box-reverse 650ms ease-out 0ms forwards;
+  opacity: 1;
+  animation-delay: 0ms;
+}
+.domino--reverse .domino__box:nth-child(4) {
+  animation-delay: 650ms;
+}
+.domino--reverse .domino__box:nth-child(4)::before {
+  animation: show-hide-box-reverse 650ms ease-out 650ms forwards;
+}
+.domino--reverse .domino__box:nth-child(3) {
+  animation-delay: 1300ms;
+}
+.domino--reverse .domino__box:nth-child(3)::before {
+  animation: show-hide-box-reverse 650ms ease-out 1300ms forwards;
+}
+.domino--reverse .domino__box:nth-child(2) {
+  animation-delay: 1950ms;
+}
+.domino--reverse .domino__box:nth-child(2)::before {
+  animation: show-hide-box-reverse 650ms ease-out 1950ms forwards;
+}
+.domino--reverse .domino__box:nth-child(1) {
+  animation-delay: 2600ms;
+}
+.domino--reverse .domino__box:nth-child(1)::before {
+  animation: show-hide-box-reverse 650ms ease-out 2600ms forwards;
+}
+@keyframes rotate-box {
+  from {
+    transform: rotate(-45deg);
+  }
   to {
     transform: rotate(45deg);
   }
 }
-@keyframes hide-domino {
+@keyframes rotate-box-reverse {
+  from {
+    transform: rotate(45deg);
+  }
   to {
+    transform: rotate(-45deg);
+  }
+}
+@keyframes show-hide-box {
+  0%, 99% {
+    opacity: 1;
+  }
+  100% {
     opacity: 0;
   }
 }
-@keyframes show-domino {
+@keyframes show-hide-box-reverse {
+  0%, 99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes show-box {
   to {
     opacity: 1;
   }

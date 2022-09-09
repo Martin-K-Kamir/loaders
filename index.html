@@ -44,5 +44,16 @@
 	</div>
 </div>
 
+<script>
+	setInterval(function () {
+		document.querySelector('.domino').classList.add('domino--reverse');
+	}, 3250);
+
+	setInterval(function () {
+		document.querySelector('.domino--reverse').classList.remove('domino--reverse');
+	}, 6500);
+
+
+</script>
 </body>
 </html>

@@ -1,85 +1,124 @@
 
 .domino {
+	$num-of-boxes       : 5;
+	$animation-duration : 650ms;
+	$lightness          : 66%;
+	$lightness-ratio    : 7%;
+	--hue               : 234;
+	--sataturation      : 100%;
+	--lightness         : #{ $lightness };
+	--size-box          : 2rem;
 
-	display : flex;
-	gap     : 2.3rem;
+	display             : flex;
+	gap                 : 2.3rem;
+
 
 	&__box,
 	&__box::before {
 		display          : block;
-		width            : 2rem;
+		width            : var(--size-box);
 		aspect-ratio     : 1;
 		background-color : var(--clr-background);
 		border-radius    : 0.5rem;
 	}
 
 	&__box {
-		--clr-background : #5465ff;
-		transform        : rotate(-45deg);
-		animation        : move-domino 650ms ease-out forwards;
-	}
-
-	&__box:nth-child(2) {
-		--clr-background : #788bff;
-		animation-delay  : 650ms;
-	}
-
-	&__box:nth-child(3) {
-		--clr-background : #9bb1ff;
-		animation-delay  : 1300ms;
-	}
-
-	&__box:nth-child(4) {
-		--clr-background : #bfd7ff;
-		animation-delay  : 1950ms;
-	}
-
-	&__box:nth-child(5) {
-		--clr-background : #e2fdff;
-		animation-delay  : 2600ms;
+		--clr-background : hsl(var(--hue), var(--sataturation), var(--lightness));
+		animation        : rotate-box $animation-duration ease-out both;
 	}
 
 	&__box::before {
 		content   : "";
 		transform : translateY(-150%);
-		animation : hide-domino 0s ease-out 650ms forwards;
-	}
-
-	&__box:nth-child(2)::before {
 		opacity   : 0;
-		animation : show-domino 0s 650ms forwards, hide-domino 0s ease-out 1300ms forwards;
+		animation : show-hide-box $animation-duration ease-out forwards;
 	}
 
-	&__box:nth-child(3)::before {
-		opacity   : 0;
-		animation : show-domino 0s 1300ms forwards, hide-domino 0s ease-out 1950ms forwards;
+	@for $i from 1 through $num-of-boxes {
+		&__box:nth-child(#{$i + 1}) {
+			--clr-background : #{hsl(var(--hue), var(--sataturation), $lightness + $lightness-ratio * $i)};
+			animation-delay  : $animation-duration * $i;
+		}
+
+		&__box:nth-child(#{$i + 1})::before {
+			@if $i == $num-of-boxes - 1 {
+				animation : show-hide-box $animation-duration ease-out forwards, show-box 0ms ease-out forwards;
+			}
+
+			animation-delay : $animation-duration * $i;
+		}
 	}
 
-	&__box:nth-child(4)::before {
-		opacity   : 0;
-		animation : show-domino 0s 1950ms forwards, hide-domino 0s ease-out 2600ms forwards;
+
+	&--reverse {
+
+		.domino__box {
+			animation : rotate-box-reverse $animation-duration ease-out both;
+		}
+
+		$_num-of-boxes : $num-of-boxes;
+		@for $i from 1 through $_num-of-boxes {
+			.domino__box:nth-child(#{$_num-of-boxes}) {
+				animation-delay : $animation-duration * ($i - 1);
+
+				@if $_num-of-boxes == 5 {
+					animation-delay : 0ms;
+				}
+			}
+
+			.domino__box:nth-child(#{$_num-of-boxes})::before {
+				animation : show-hide-box-reverse $animation-duration ease-out $animation-duration * ($i - 1) forwards;
+
+				@if $_num-of-boxes == 5 {
+					opacity         : 1;
+					animation-delay : 0ms;
+				}
+			}
+
+			$_num-of-boxes : $_num-of-boxes - 1;
+		}
 	}
 
-	&__box:nth-child(5)::before {
-		opacity   : 0;
-		animation : show-domino 0s 2600ms forwards, hide-domino 0s ease-out 3250ms ;
-	}
-}
 
-@keyframes move-domino {
-	to {
-		transform : rotate(45deg);
+	@keyframes rotate-box {
+		from {
+			transform : rotate(-45deg);
+		}
+		to {
+			transform : rotate(45deg);
+		}
 	}
-}
 
-@keyframes hide-domino {
-	to {
-		opacity : 0;
+	@keyframes rotate-box-reverse {
+		from {
+			transform : rotate(45deg);
+		}
+		to {
+			transform : rotate(-45deg);
+		}
 	}
-}
 
-@keyframes show-domino {
-	to {
-		opacity : 1;
+	@keyframes show-hide-box {
+		0%, 99% {
+			opacity : 1;
+		}
+		100% {
+			opacity : 0;
+		}
+	}
+
+	@keyframes show-hide-box-reverse {
+		0%, 99% {
+			opacity : 1;
+		}
+		100% {
+			opacity : 0;
+		}
+	}
+
+	@keyframes show-box {
+		to {
+			opacity : 1;
+		}
 	}
 }

@@ -16,25 +16,27 @@
 
 	&__ball:nth-child(2) {
 		animation-delay : 100ms;
-		opacity: 80%;
+		opacity         : 80%;
 	}
 
 	&__ball:nth-child(3) {
 		animation-delay : 200ms;
-		opacity: 60%;
+		opacity         : 60%;
 	}
 
 	&__ball:nth-child(4) {
 		animation-delay : 300ms;
-		opacity: 40%;
+		opacity         : 40%;
 	}
+
+	@keyframes bounce {
+		from {
+			transform : translateY(0);
+		}
+		to {
+			transform : translateY(-100px);
+		}
+	}
+
 }
 
-@keyframes bounce {
-	from {
-		transform : translateY(0);
-	}
-	to {
-		transform : translateY(-100px);
-	}
-}
