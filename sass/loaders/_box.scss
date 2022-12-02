@@ -1,0 +1,45 @@
+
+#box-1.box {
+	--_size            : var(--size, 3rem);
+	--_bg              : var(--bg, hsl(0, 0%, 100%));
+	--_animation-speed : var(--animation-speed, 2000ms);
+	--_animation-timing: var(--animation-timing, ease-in-out);
+
+	position           : relative;
+	inline-size        : var(--_size);
+	aspect-ratio       : 1;
+	border             : calc(var(--_size) / 10) solid var(--_bg);
+	animation          : rotate var(--_animation-speed) infinite var(--_animation-timing);
+
+	&::after {
+		content          : '';
+		position         : absolute;
+		inset            : -1px;
+		background-color : var(--_bg);
+		scale            : 1 0;
+		transform-origin : top;
+		animation        : scale var(--_animation-speed) infinite var(--_animation-timing);
+	}
+
+	@keyframes rotate {
+		0% {
+			rotate : 0turn;
+		}
+		25%, 50% {
+			rotate : 0.5turn;
+		}
+		75%, 100% {
+			rotate : 1turn;
+		}
+	}
+
+	@keyframes scale {
+		0%, 25%, 100% {
+			scale : 1 0;
+		}
+
+		50%, 75% {
+			scale : 1 1;
+		}
+	}
+}

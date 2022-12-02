@@ -1,57 +1,83 @@
 <html lang="en">
 <head>
-	<meta charset="UTF-8"/>
-	<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-	<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-	<link href="/css/main.css" rel="stylesheet"/>
-	<title>Spinners</title>
+    <meta charset="UTF-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="/css/main.css" rel="stylesheet"/>
+    <title>Spinners</title>
 </head>
 <body>
 
 <div class="container">
-	<div class="domino">
-		<div class="domino__box"></div>
-		<div class="domino__box"></div>
-		<div class="domino__box"></div>
-		<div class="domino__box"></div>
-		<div class="domino__box"></div>
-	</div>
+    <span class="order">0</span>
+    <div class="box" id="box-1">
+    </div>
 </div>
 
 <div class="container">
-	<span class="order">0</span>
-	<div class="bouncer">
-		<div class="bouncer__ball"></div>
-		<div class="bouncer__ball"></div>
-		<div class="bouncer__ball"></div>
-		<div class="bouncer__ball"></div>
-	</div>
+    <span class="order">1</span>
+    <div class="circles" id="circles-2">
+        <div class="circles__circle"></div>
+        <div class="circles__circle"></div>
+        <div class="circles__circle"></div>
+        <div class="circles__circle"></div>
+    </div>
 </div>
 
 <div class="container">
-	<span class="order">1</span>
-	<div class="spinner-1">
-		<div></div>
-		<div></div>
-	</div>
+    <span class="order">2</span>
+    <div class="domino">
+        <div class="domino__box"></div>
+        <div class="domino__box"></div>
+        <div class="domino__box"></div>
+        <div class="domino__box"></div>
+        <div class="domino__box"></div>
+    </div>
 </div>
 
 <div class="container">
-	<span class="order">2</span>
-	<div class="circles">
-		<div class="circles__circle"></div>
-		<div class="circles__circle"></div>
-	</div>
+    <span class="order">3</span>
+    <div class="bouncer">
+        <div class="bouncer__ball"></div>
+        <div class="bouncer__ball"></div>
+        <div class="bouncer__ball"></div>
+        <div class="bouncer__ball"></div>
+    </div>
+</div>
+
+<div class="container">
+    <span class="order">4</span>
+    <div class="spinner-1">
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<div class="container">
+    <span class="order">5</span>
+    <div class="circles" id="circles-1">
+        <div class="circles__circle"></div>
+        <div class="circles__circle"></div>
+    </div>
+</div>
+
+<div class="container">
+    <span class="order">6</span>
+    <div class="circles" id="circles-3">
+        <span class="circles__circle"></span>
+        <span class="circles__circle"></span>
+        <span class="circles__circle"></span>
+    </div>
 </div>
 
 <script>
-	setInterval(function () {
-		document.querySelector('.domino').classList.add('domino--reverse');
-	}, 3250);
+    setInterval(function () {
+        document.querySelector('.domino').classList.add('domino--reverse');
+    }, 3250);
 
-	setInterval(function () {
-		document.querySelector('.domino--reverse').classList.remove('domino--reverse');
-	}, 6500);
+    setInterval(function () {
+        document.querySelector('.domino--reverse').classList.remove('domino--reverse');
+    }, 6500);
 
 
 </script>

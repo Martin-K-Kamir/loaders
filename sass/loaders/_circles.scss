@@ -1,10 +1,10 @@
 
-.circles {
+#circles-1.circles {
 	height           : 40px;
 	transform-origin : bottom center;
 	animation        : rotate-circles 3s linear infinite;
 
-	&__circle {
+	.circles__circle {
 		display          : inline-block;
 		background-color : crimson;
 		height           : 30px;
@@ -15,7 +15,7 @@
 		margin           : -10px;
 	}
 
-	&__circle:nth-child(2) {
+	.circles__circle:nth-child(2) {
 		background-color : steelblue;
 		animation-delay  : 0.75s;
 	}
@@ -33,3 +33,137 @@
 	}
 }
 
+#circles-2.circles {
+
+	--_size             : var(--size, 5rem);
+	--_animation-speed  : var(--animation-speed, 1000ms);
+	--_animation-timing : var(--animation-timing, ease-in-out);
+	--_animation-turns  : var(--animation-turns, 2turn);
+
+	inline-size         : var(--_size);
+	aspect-ratio        : 1;
+	position            : relative;
+	animation           : rotate var(--_animation-speed) infinite var(--_animation-timing);
+
+	@keyframes rotate {
+		to {
+			rotate : var(--_animation-turns);
+		}
+	}
+
+	& > div {
+		--_bg                  : var(--bg, #FFFFFF);
+		--_h                   : var(--h, 332);
+		--_h-ratio             : var(--h-ratio, 20);
+		--_s                   : var(--s, 100%);
+		--_s-ratio             : var(--s-ratio, 5%);
+		--_l                   : var(--l, 65%);
+		--_l-ratio             : var(--l-ratio, 3%);
+		--_size                : var(--size, 11rem);
+		--_inset-inline-start  : var(--inset-inline-start, auto);
+		--_inset-inline-end    : var(--inset-inline-end, auto);
+		--_inset-block-start   : var(--inset-block-start, auto);
+		--_inset-block-end     : var(--inset-block-end, auto);
+		--_animation-scale     : var(--animation-scale, 1);
+		--_animation-translate : var(--animation-translate, 1);
+
+		position               : absolute;
+		inset                  : var(--_inset-block-start) var(--_inset-inline-end) var(--_inset-block-end) var(--_inset-inline-start);
+		inline-size            : var(--_size);
+		aspect-ratio           : 1;
+		background-color       : hsl(calc(var(--_h) - var(--_h-ratio) * var(--_i)), calc(var(--_s) - var(--_s-ratio) * var(--_i)), calc(var(--_l) - var(--_l-ratio) * var(--_i)));
+		background-color       : var(--_bg);
+		border-radius          : 50%;
+		animation              : move var(--_animation-speed) infinite ease;
+
+		@keyframes move {
+			50% {
+				translate : var(--_animation-translate);
+				scale     : var(--_animation-scale);
+			}
+		}
+	}
+
+	& > div:nth-child(even) {
+		--_size            : 30%;
+		--_inset           : 5%;
+		--_animation-scale : 0.85;
+	}
+
+	& > div:nth-child(odd) {
+		--_size            : 50%;
+		--_inset           : 0;
+		--_animation-scale : 0.35;
+	}
+
+	& > div:nth-child(1) {
+		--_bg                  : hsl(332, 100%, 64%);
+		--_i                   : 1;
+		--_inset-block-start   : var(--_inset);
+		--_inset-inline-start  : var(--_inset);
+		--_animation-translate : -20% -20%;
+	}
+
+	& > div:nth-child(2) {
+		--_i                   : 2;
+		--_bg                  : hsl(315, 55%, 61%);
+		--_inset-block-start   : var(--_inset);
+		--_inset-inline-end    : var(--_inset);
+		--_animation-translate : 5% -10%;
+	}
+
+	& > div:nth-child(3) {
+		--_i                   : 3;
+		--_bg                  : hsl(267, 45%, 66%);
+		--_inset-block-end     : var(--_inset);
+		--_inset-inline-end    : var(--_inset);
+		--_animation-translate : 20% 20%;
+	}
+
+	& > div:nth-child(4) {
+		--_i                   : 4;
+		--_bg                  : hsl(221, 70%, 69%);
+		--_inset-block-end     : var(--_inset);
+		--_inset-inline-start  : var(--_inset);
+		--_animation-translate : -5% 10%;
+	}
+}
+
+#circles-3.circles {
+	--_space           : var(--space, 1rem);
+	--_size            : var(--size, 3rem);
+	--_animation-speed : var(--animation-speed, 600ms);
+
+
+	display            : flex;
+	justify-content    : center;
+	align-items        : center;
+	gap                : var(--_space);
+
+	span {
+		background-color : crimson;
+		width            : calc(var(--_size) / 10);
+		aspect-ratio     : 1;
+		border-radius    : 50%;
+		transform        : translate3d(0);
+		animation        : bounceCircles var(--_animation-speed) infinite alternate ;
+
+		@keyframes bounceCircles {
+			0% {
+				transform : translateY(0);
+			}
+			100% {
+				width     : var(--_size);
+				transform : translate3d(0, -1.2rem, 0);
+			}
+		}
+	}
+
+	span:nth-child(2) {
+		animation-delay : calc(var(--_animation-speed) / 3);
+	}
+
+	span:nth-child(3) {
+		animation-delay : calc(var(--_animation-speed) / 3 * 2);
+	}
+}
