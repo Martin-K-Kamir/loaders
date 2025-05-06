@@ -1,4 +1,4 @@
-# 🎯 100 Loaders Challenge
+## 🎯 100 Loaders Challenge
 
 Welcome to the 100 Loaders Challenge — a personal project where I aim to recreate and design 100 unique CSS and animation loaders. Some are inspired by loaders I've come across, while others are original creations.
 
